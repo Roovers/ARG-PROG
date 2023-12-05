@@ -30,7 +30,7 @@ public class EquipoDAOImpl implements EquipoDAO{
             System.out.print("Ingrese la cantidad de suplentes: ");
             int suplentes = scanner.nextInt();
 
-            scanner.nextLine(); // Consumir la nueva línea
+            scanner.nextLine(); 
 
             System.out.print("Ingrese el nombre del director técnico: ");
             String directorTecnico = scanner.nextLine();
@@ -41,10 +41,10 @@ public class EquipoDAOImpl implements EquipoDAO{
             System.out.print("Ingrese la cantidad de partidos jugados: ");
             int partidosJugados = scanner.nextInt();
 
-            // 2. Crear un nuevo equipo con los datos ingresados
+            
             Equipo nuevoEquipo = new BocaJuniors(nombre, titulares, suplentes, directorTecnico, puntos, partidosJugados);
 
-            // 3. Persistir el equipo en la base de datos
+           
             persistirEquipo(nuevoEquipo);
 
             System.out.println("Equipo creado exitosamente.");
@@ -57,7 +57,7 @@ public class EquipoDAOImpl implements EquipoDAO{
     @Override
     public void crearEquipoRiverPlate() {
         try {
-            // 1. Ingresar datos por teclado
+            
             System.out.print("Ingrese el nombre del equipo: ");
             String nombre = scanner.nextLine();
 
@@ -78,10 +78,10 @@ public class EquipoDAOImpl implements EquipoDAO{
             System.out.print("Ingrese la cantidad de partidos jugados: ");
             int partidosJugados = scanner.nextInt();
 
-            // 2. Crear un nuevo equipo con los datos ingresados
+            
             Equipo nuevoEquipo = new RiverPate(nombre, titulares, suplentes, directorTecnico, puntos, partidosJugados);
 
-            // 3. Persistir el equipo en la base de datos
+          
             persistirEquipo(nuevoEquipo);
 
             System.out.println("Equipo creado exitosamente.");
@@ -102,15 +102,15 @@ public class EquipoDAOImpl implements EquipoDAO{
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
-            scanner.nextLine();  // Consumir la nueva línea
+            scanner.nextLine();  
 
             switch (opcion) {
                 case 1:
-                    // Crear un objeto BocaJuniors
+                   
                     crearEquipoBocaJuniors();
                     break;
                 case 2:
-                    // Crear un objeto RiverPlate
+                    
                     crearEquipoRiverPlate();
                     break;
                 default:
@@ -148,7 +148,7 @@ public class EquipoDAOImpl implements EquipoDAO{
         Equipo equipo = null;
 
         try (Connection connection = ConexionDB.obtenerConexion()) {
-            // Pedir al usuario que ingrese el nombre del equipo por teclado
+            
             Scanner scanner = new Scanner(System.in);
             System.out.print("Ingrese el nombre del equipo: ");
            String nombre = scanner.nextLine();
@@ -159,7 +159,7 @@ public class EquipoDAOImpl implements EquipoDAO{
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
-                        // Recuperar datos de la base de datos
+                        
                         String nombreEquipo = rs.getString("nombre");
                         int titulares = rs.getInt("titulares");
                         int suplentes = rs.getInt("suplentes");
@@ -167,7 +167,7 @@ public class EquipoDAOImpl implements EquipoDAO{
                         int puntos = rs.getInt("puntos");
                         int partidosJugados = rs.getInt("partidosJugados");
 
-                        // Crear un objeto Equipo con los datos recuperados
+                        
                         equipo = new BocaJuniors(nombreEquipo, titulares, suplentes, directorTecnico, puntos, partidosJugados);
                         System.out.println(equipo);
                     } else {
@@ -187,15 +187,15 @@ public class EquipoDAOImpl implements EquipoDAO{
         try (Connection connection = ConexionDB.obtenerConexion()) {
             Scanner scanner = new Scanner(System.in);
 
-            // Solicitar al usuario que ingrese el nombre del equipo por teclado
+            
             System.out.print("Ingrese el nombre del equipo que desea actualizar: ");
             String nombre = scanner.nextLine();
 
-            // Verificar si el equipo existe en la base de datos
+            
             Equipo equipoExistente = obtenerEquipo();
 
             if (equipoExistente != null) {
-                // El equipo existe, solicitar los nuevos datos al usuario
+                
                 System.out.print("Ingrese la nueva cantidad de titulares: ");
                 int nuevosTitulares = scanner.nextInt();
 
@@ -213,7 +213,7 @@ public class EquipoDAOImpl implements EquipoDAO{
                 System.out.print("Ingrese la nueva cantidad de partidos jugados: ");
                 int nuevosPartidosJugados = scanner.nextInt();
 
-                // Actualizar los datos en la base de datos
+               
                 String sql = "UPDATE equipo SET titulares = ?, suplentes = ?, directorTecnico = ?, puntos = ?, partidosJugados = ? WHERE nombre = ?";
                 try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                     pstmt.setInt(1, nuevosTitulares);
@@ -244,7 +244,7 @@ public class EquipoDAOImpl implements EquipoDAO{
         try (Connection connection = ConexionDB.obtenerConexion()) {
             Scanner scanner = new Scanner(System.in);
 
-            // Solicitar al usuario que ingrese el nombre del equipo por teclado
+            
             System.out.print("Ingrese el nombre del equipo que desea eliminar: ");
             String nombreEquipo = scanner.nextLine();
 
@@ -274,7 +274,7 @@ public class EquipoDAOImpl implements EquipoDAO{
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 try (ResultSet rs = pstmt.executeQuery()) {
                     while (rs.next()) {
-                        // Recuperar datos de la base de datos
+                        
                         String nombre = rs.getString("nombre");
                         int titulares = rs.getInt("titulares");
                         int suplentes = rs.getInt("suplentes");
@@ -282,11 +282,11 @@ public class EquipoDAOImpl implements EquipoDAO{
                         int puntos = rs.getInt("puntos");
                         int partidosJugados = rs.getInt("partidosJugados");
 
-                        // Crear un objeto Equipo y mostrarlo en consola
+                        
                         Equipo equipo = new BocaJuniors(nombre, titulares, suplentes, directorTecnico, puntos, partidosJugados);
                         System.out.println(equipo);
 
-                        // Agregar el equipo a la lista
+                        
                         equipos.add(equipo);
                     }
                 }
