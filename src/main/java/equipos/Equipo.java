@@ -89,7 +89,7 @@ public abstract class Equipo implements Serializable{
     }
 
     void retirarse() {
-        System.out.println("Celebrando el resultado del partido");
+        System.out.println("El equipo se retira del estadio.");
     }
 
     // Método abstracto que debe ser implementado por las subclases
