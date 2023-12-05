@@ -12,7 +12,7 @@ public abstract class Equipo implements Serializable{
     private int partidosJugados;
 
     public Equipo() {
-        // Constructor por defecto
+      
     }
 
     public Equipo(String nombre, int titulares, int suplentes, String directorTecnico, int puntos, int partidosJugados) {
@@ -24,7 +24,7 @@ public abstract class Equipo implements Serializable{
         this.partidosJugados = partidosJugados;
     }
 
-    // Getters y setters
+   
 
     public String getNombre() {
         return nombre;
@@ -74,7 +74,7 @@ public abstract class Equipo implements Serializable{
         this.partidosJugados = partidosJugados;
     }
 
-    // Otros métodos según sea necesario
+    
 
     public final void jugarPartido() {
         precalentamiento();
@@ -83,7 +83,7 @@ public abstract class Equipo implements Serializable{
         retirarse();
     }
 
-    // Métodos comunes compartidos por las subclases
+    
     void precalentamiento() {
         System.out.println("Calentando para el partido");
     }
