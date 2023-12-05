@@ -92,16 +92,16 @@ public abstract class Equipo implements Serializable{
         System.out.println("El equipo se retira del estadio.");
     }
 
-    // Método abstracto que debe ser implementado por las subclases
+    
     abstract void charlaTactica();
 
-    // Método específico del partido que debe ser implementado por las subclases
+    
     abstract void realizarJuego();
 
     @Override
     public String toString() {
         return
-                "nombre=" + nombre +
+                "   nombre=" + nombre +
                 "\n titulares=" + titulares +
                 "\n suplentes=" + suplentes +
                 "\n directorTecnico='" + directorTecnico + '\'' +
