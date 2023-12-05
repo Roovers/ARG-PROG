@@ -13,10 +13,7 @@ public class Main {
             ConexionDB.obtenerConexion();
             System.out.println("Conexión exitosa a la base de datos");
 
-            
             Menu menu = new Menu(equipoDAO);
-
-           
             menu.mostrarMenu();
 
         } catch (RuntimeException e) {
